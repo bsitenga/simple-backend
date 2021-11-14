@@ -12,12 +12,12 @@ app.get('/', (req, res) => {
 
 //-5 is really bad, 0 is neutral, 5 is really good
 app.post('/checkmood', (req, res) => {
+  let num = 0.6
   console.log(req.body);
   let userText = req.body.userText;
   let sentiment = new Sentiment();
   let result = sentiment.analyze(userText);
-  console.log(result);
-  res.send(result.comparative.toString());
+  res.send(num.toString());
 })
 
 app.listen(process.env.PORT || port, () => {
