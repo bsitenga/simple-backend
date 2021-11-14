@@ -16,13 +16,13 @@ app.post('/checkmood', (req, res) => {
   let sentiment = new Sentiment();
   let result = sentiment.analyze(userText);
   let moodScore = result.comparative;
-  if (moodScore < -3) {
+  if (moodScore < -1.5) {
     res.send("Horrible")
-  } else if (moodScore < -1) {
+  } else if (moodScore < -.5) {
     res.send("Not Great")
-  } else if (moodScore < 1) {
+  } else if (moodScore < .5) {
     res.send("Neutral")
-  } else if (moodScore < 3) {
+  } else if (moodScore < 1.5) {
     res.send("Pretty Good")
   } else {
     res.send("Awesome!")
