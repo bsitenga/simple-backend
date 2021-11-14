@@ -1,5 +1,4 @@
 const express = require('express')
-var bodyParser = require('body-parser')
 const Sentiment = require('sentiment')
 const app = express()
 const port = 3000
@@ -10,6 +9,7 @@ app.get('/', (req, res) => {
   res.send("Test");
 })
 
+//does sentiment analysis on user text (0-5) and returns general moood
 //-5 is really bad, 0 is neutral, 5 is really good
 app.post('/checkmood', (req, res) => {
   let userText = req.body.userText;
@@ -29,6 +29,16 @@ app.post('/checkmood', (req, res) => {
   }
 
   res.send("Doing Okay"); // should never hit this
+})
+
+//checks for words in emotions and returns phrases
+app.post('/emotions', (req, res) => {
+  let emotionText = req.body.emotionText;
+  if (emotionText.includes("suicidal") || emotionText.includes("depressed")) {
+    res.send("Please go get help. Here's the suicide hotlines: 323 go fuck yourself.");
+  } else if (emotionText.includes("happy") || emotionText.includes("excited")) {
+    res.send("Lot's of positive vibes going around. Hope you appreciate these joyful moments in life.")
+  }
 })
 
 app.listen(process.env.PORT || port, () => {
