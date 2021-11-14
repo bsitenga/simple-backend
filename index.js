@@ -31,21 +31,6 @@ app.post('/checkmood', (req, res) => {
   res.send("Doing Okay"); // should never hit this
 })
 
-app.post('/moodranking', (req, res) => {
-  let moodScore = Number(req.body.moodScore);
-  if (moodScore < -3) {
-    res.send("Horrible")
-  } else if (moodScore < -1) {
-    res.send("Not Great")
-  } else if (moodScore < 1) {
-    res.send("Neutral")
-  } else if (moodScore < 3) {
-    res.send("Pretty Good")
-  } else {
-    res.send("Awesome!")
-  }
-})
-
 app.listen(process.env.PORT || port, () => {
   console.log(`Backend listening at http://localhost:${port}`)
 })
