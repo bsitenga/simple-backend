@@ -33,11 +33,13 @@ app.post('/checkmood', (req, res) => {
 
 //checks for words in emotions and returns phrases
 app.post('/emotions', (req, res) => {
-  let emotionText = req.body.emotionText;
+  let emotionText = req.body.emotionText.toLowerCase();
   if (emotionText.includes("suicidal") || emotionText.includes("depressed")) {
     res.send("Please go get help. Here's the suicide hotlines: 323 go fuck yourself.");
   } else if (emotionText.includes("happy") || emotionText.includes("excited")) {
     res.send("Lot's of positive vibes going around. Hope you appreciate these joyful moments in life.")
+  } else {
+    res.send("No significant data on these emotions yet.")
   }
 })
 
